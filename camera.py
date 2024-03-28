@@ -1,5 +1,6 @@
 import cv2
 from matplotlib import pyplot as plt
+import time
 
 def take_image():
     print ("1")
@@ -11,6 +12,10 @@ def take_image():
         #plt.imshow(frame)
         cv2.imwrite("webcamphoto.jpg", frame)
         cap.release()
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1024)
+        time.sleep(2)
+        cap.set(cv2.CAP_PROP_EXPOSURE, -8.0)
 
 
 print ("okay")
