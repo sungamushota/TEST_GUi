@@ -10,12 +10,14 @@ def take_image():
     if ret:
         print(ret)
         #plt.imshow(frame)
-        cv2.imwrite("webcamphoto.jpg", frame)
-        cap.release()
+        
+        
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1024)
         time.sleep(2)
         cap.set(cv2.CAP_PROP_EXPOSURE, -8.0)
+        cv2.imwrite("webcamphoto.jpg", frame)
+        cap.release()
 
 
 print ("okay")

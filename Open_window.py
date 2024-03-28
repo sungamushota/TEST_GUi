@@ -37,19 +37,21 @@ class App(customtkinter.CTk):
         self.login_button.grid(row=3, column=0, padx=30, pady=(15, 15))
         self.decription_button = customtkinter.CTkButton(self.login_frame, text="Description", command=self.description_event, width=200)
         self.decription_button.grid(row=4, column=0, padx=30, pady=(15, 15))
+        self.setting_button = customtkinter.CTkButton(self.login_frame, text="Setting", command=self.setting_event, width=200)
+        self.setting_button.grid(row=5, column=0, padx=30, pady=(15, 15))
 
         #Create Test description Frame
         self.Description_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.Description_frame.grid_columnconfigure(0, weight=1)
         self.Description_label = customtkinter.CTkLabel(self.Description_frame, text="Test Hardware Description\nSetup Page",
                                                   font=customtkinter.CTkFont(size=20, weight="bold"))
-        self.Description_label.grid(row=0, column=0, padx=30, pady=(50, 15))
+        self.Description_label.grid(row=0, column=0, padx=30, pady=(50,50 ))
         self.desc_operator_entry = customtkinter.CTkEntry(self.Description_frame, width=200, placeholder_text="Operator Name")#username
         self.desc_operator_entry.grid(row=1, column=0, padx=30, pady=(0, 15))
         self.desc_department_entry = customtkinter.CTkEntry(self.Description_frame, width=200, placeholder_text="Department i.e. Engineering")#username
         self.desc_department_entry.grid(row=2, column=0, padx=30, pady=(0, 15))
         self.desc_hardware_entry = customtkinter.CTkEntry(self.Description_frame, width=200, placeholder_text="Hardware Description")#username
-        self.desc_hardware_entry.grid(row=3, column=0, padx=30, pady=(15, 15))
+        self.desc_hardware_entry.grid(row=3, column=0, padx=30, pady=(50, 15))
         self.desc_serial_entry = customtkinter.CTkEntry(self.Description_frame, width=200, placeholder_text="Serial Number") 
         self.desc_serial_entry.grid(row=4, column=0, padx=30, pady=(0, 15))
         self.desc_assembly_entry = customtkinter.CTkEntry(self.Description_frame, width=200, placeholder_text="Assembly Number") #password #, show="*"
@@ -57,6 +59,17 @@ class App(customtkinter.CTk):
 
         self.desc_login_button = customtkinter.CTkButton(self.Description_frame, text="Save Details", command=self.description_event, width=200)
         self.desc_login_button.grid(row=6, column=0, padx=30, pady=(15, 15))
+
+        #Camera test settings frame
+        self.checkbox_slider_frame = customtkinter.CTkFrame(self)
+        self.checkbox_slider_frame.grid_columnconfigure(0, weight=1)
+        #self.checkbox_slider_frame.grid(row=1, column=3, padx=(20, 20), pady=(20, 0), sticky="nsew")
+        self.checkbox_1 = customtkinter.CTkCheckBox(master=self.checkbox_slider_frame)
+        self.checkbox_1.grid(row=1, column=0, pady=(20, 0), padx=20, sticky="n")
+        self.checkbox_2 = customtkinter.CTkCheckBox(master=self.checkbox_slider_frame)
+        self.checkbox_2.grid(row=2, column=0, pady=(20, 0), padx=20, sticky="n")
+        self.checkbox_3 = customtkinter.CTkCheckBox(master=self.checkbox_slider_frame)
+        self.checkbox_3.grid(row=3, column=0, pady=20, padx=20, sticky="n")
 
         
 
@@ -74,6 +87,13 @@ class App(customtkinter.CTk):
 
         self.login_frame.grid_forget()  # remove login frame
         self.main_frame.grid(row=0, column=0, sticky="nsew", padx=100)  # show main frame
+
+    def setting_event(self):
+        print("Login pressed - username:", self.username_entry.get(), "password:", self.password_entry.get())
+
+        self.login_frame.grid_forget()  # remove login frame
+        #self.checkbox_slider_frame.grid(row=1, column=3, padx=(20, 20), pady=(20, 0), sticky="nsew")
+        self.checkbox_slider_frame.grid(row=0, column=0, sticky="nsew", padx=100)  # show main frame
         
     def description_event(self):
         print("Description pressed - Assembly:", self.desc_assembly_entry.get(), "Operator:", self.desc_operator_entry.get())
@@ -82,6 +102,8 @@ class App(customtkinter.CTk):
         serial = self.desc_serial_entry
         hardware = self.desc_hardware_entry
         department = self.desc_department_entry
+        self.Description_frame.grid_forget()  # remove login frame
+        self.main_frame.grid(row=0, column=0, sticky="nsew", padx=100)  # show main frame
         
 
         self.login_frame.grid_forget()  # remove login frame
